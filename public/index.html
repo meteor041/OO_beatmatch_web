@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload and Download</title>
+</head>
+<body>
+  <h1>File Upload and Download</h1>
+
+  <!-- 文件上传表单 -->
+  <form id="uploadForm">
+    <input type="file" name="file" required, id="fileInput">
+    <button type="submit">Upload</button>
+  </form>
+
+  <div id="responseMessage"></div>
+  <hr>
+
+  <!-- 文件下载链接 -->
+  <h2>Compare/Verify JAR file lists</h2>
+  <ul id="file-list"></ul>
+
+   <hr>
+    <!-- 运行 Python 脚本按钮 -->
+  <h2>Run Python Script</h2>
+  <label for="data-count">请输入生成数据个数:</label>
+<input type="number" id="data-count" min="1" value="1"> <!-- 默认值为10 -->
+  <button id="run-python">Run Python Script</button>
+  <pre id="python-output"></pre>
+
+  <script>
+     document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(message => {
+                document.getElementById('responseMessage').innerText = message;
+
+                // 上传成功后刷新文件列表
+                fetchFiles();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+    // 获取文件列表并显示
+     function fetchFiles() {
+       fetch("/files")
+         .then((response) => response.json())
+         .then((files) => {
+           const fileList = document.getElementById("file-list");
+           fileList.innerHTML = ""; // 清空当前列表
+           files.forEach((file) => {
+             const li = document.createElement("li");
+             const a = document.createElement("a");
+             a.href = `/download/${file}`;
+             a.textContent = file;
+             li.appendChild(a);
+             // 添加删除按钮
+             const deleteButton = document.createElement("button");
+             deleteButton.textContent = "Delete";
+             deleteButton.addEventListener("click", () => deleteFile(file));
+             li.appendChild(deleteButton);
+
+             fileList.appendChild(li);
+           });
+         });
+     }
+
+    // 删除文件
+    function deleteFile(filename) {
+      fetch(`/delete/${filename}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.text())
+      .then(message => {
+        alert(message);
+        // 删除成功后刷新文件列表
+        fetchFiles();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+    // 运行 Python 脚本
+    document.getElementById("run-python").addEventListener("click", () => {
+      const dataCount = document.getElementById("data-count").value; // 获取输入框的值
+      fetch("/run-python", {
+        method: "POST", // 使用 POST 请求
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count: dataCount }), // 将参数发送到后端
+      })
+        .then((response) => response.text())
+        .then((output) => {
+          document.getElementById("python-output").textContent = output;
+        })
+        .catch((error) => {
+          console.error("Error running Python script:", error);
+        });
+    });
+
+     // 页面加载时获取文件列表
+    fetchFiles();
+  </script>
+</body>
+</html>
