@@ -8,7 +8,7 @@ class Generator:
     def __init__(self, max_depth, max_length):
         self.max_depth = max_depth
         self.max_length = max_length
-        self.function_type = [random.randint(0, 3) for _ in range(3)]
+        self.function_type = [random.randint(0, 4) for _ in range(3)]
         self.arguments = ['x']
         self.forbid_function = False
         self.derive_enable = True
@@ -63,7 +63,7 @@ class Generator:
 
         def generate_expression_factor(depth):
             """生成表达式因子"""
-            expression = "(" + generate_expression_recursive(depth - 1) + ")"
+            expression = '(' + generate_expression_recursive(depth - 1) + ')'
             if random.random() < 0.3:  # 30%的概率生成指数
                 expression += generate_whitespace() + generate_exponent()
             return expression
@@ -78,8 +78,8 @@ class Generator:
                 generate_whitespace() + generate_exponent()
             return expression
 
-        def generate_function_call(depth):
-            if self.function_type[2] == 3:
+        def generate_function_call_f(depth):
+            if self.function_type[2] == 3 or self.function_type[2] == 4:
                 return "f{" + str(random.randint(0, 5)) + '}' + generate_whitespace() + '(' + generate_whitespace() + \
                     generate_factor(depth - 1) + ',' + generate_whitespace() + generate_factor(
                         depth - 1) + generate_whitespace() + ')'
@@ -89,12 +89,38 @@ class Generator:
             else:
                 print("GENERATE_FUNCTION_CALL_ERROR!!!")
 
+        def generate_function_call_g(depth):
+            if self.function_type[0] == 3 or self.function_type[0] == 4:
+                return 'g' + generate_whitespace() + '(' + generate_whitespace() + \
+                    generate_factor(depth - 1) + ',' + generate_whitespace() + generate_factor(
+                        depth - 1) + generate_whitespace() + ')'
+            elif self.function_type[0] == 2 or self.function_type[0] == 1:
+                return 'g' + generate_whitespace() + '(' + generate_whitespace() + \
+                    generate_factor(depth - 1) + generate_whitespace() + ')'
+            else:
+                print("GENERATE_FUNCTION_CALL_ERROR!!!")
+
+        def generate_function_call_h(depth):
+            if self.function_type[1] == 3 or self.function_type[1] == 4:
+                return 'h' + generate_whitespace() + '(' + generate_whitespace() + \
+                    generate_factor(depth - 1) + ',' + generate_whitespace() + generate_factor(
+                        depth - 1) + generate_whitespace() + ')'
+            elif self.function_type[1] == 2 or self.function_type[1] == 1:
+                return 'h' + generate_whitespace() + '(' + generate_whitespace() + \
+                    generate_factor(depth - 1) + generate_whitespace() + ')'
+            else:
+                print("GENERATE_FUNCTION_CALL_ERROR!!!")
+
         def generate_variable_factor(depth):
             """生成变量因子"""
             rand = random.random()
-            if rand < 0.3 and not self.forbid_function and self.function_type[2] != 0:
-                return generate_function_call(depth)
-            elif rand < 0.6:
+            if rand < 0.2 and not self.forbid_function and self.function_type[2] != 0:
+                return generate_function_call_f(depth)
+            elif rand < 0.4 and not self.forbid_function and self.function_type[0] != 0:
+                return generate_function_call_g(depth)
+            elif rand < 0.6 and not self.forbid_function and self.function_type[1] != 0:
+                return generate_function_call_h(depth)
+            elif rand < 0.8:
                 return generate_trigonometric_functions(depth)
             else:
                 return generate_power_function()
@@ -167,8 +193,8 @@ class Generator:
                     + generate_whitespace() + ')'
 
         def generate_function_definition(self):
-            self.arguments = ['x', 'y'] if self.function_type[2] == 3 else ['x'] if self.function_type[2] == 1 else [
-                'y']
+            self.arguments = ['y', 'x'] if self.function_type[2] == 4 else ['x', 'y'] if self.function_type[2] == 3 \
+                else ['x'] if self.function_type[2] == 1 else ['y']
             value = 'x' if self.function_type[2] == 1 else 'y' if self.function_type[2] == 2 else \
                 'x' + generate_whitespace() + ',' + generate_whitespace() + 'y' if self.function_type[2] == 3 \
                     else 'y' + generate_whitespace() + ',' + generate_whitespace() + 'x'
@@ -224,6 +250,7 @@ class Generator:
         while len(input) > self.max_length:
             input = generate_expression_recursive(self.max_depth)
         self.derive_enable = False
+        self.forbid_function = True
         def0 = str(min(self.function_type[0], 1) + min(self.function_type[1], 1)) + '\n'
         if self.function_type[0] != 0:
             def1 = generate_self_definition("g", self.function_type[0]) + '\n'
@@ -241,6 +268,7 @@ class Generator:
             recur = '0\n'
         else:
             recur = '1\n' + generate_function_definition(self) + '\n'
+        self.forbid_function = False
         return def0 + def1 + def2 + recur + input
 
 

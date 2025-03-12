@@ -1,8 +1,7 @@
 # 批量测试工具
 import os
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from plugin.hw3.generate3 import Generator
-from run2 import run2
 import configparser
 from sympy import *
 import subprocess
@@ -116,6 +115,54 @@ def run3(jar_file_path, input_file_path, output_file_path):
             process.wait()  # 等待进程结束
     return outputs
 
+
+def run_jar(jar_file_path, input_data):
+    try:
+        # 运行 JAR 包
+        process = subprocess.Popen(
+            ["java", "-jar", jar_file_path],  # 运行 JAR 包的命令
+            stdin=subprocess.PIPE,  # 重定向输入
+            stdout=subprocess.PIPE,  # 重定向输出
+            stderr=subprocess.PIPE,  # 捕获标准错误
+            text=True  # 以文本模式处理输入输出
+        )
+
+        # 发送输入数据
+        process.stdin.write("\n".join(input_data) + "\n")
+        process.stdin.flush()
+
+        # 读取输出和错误
+        stdout, stderr = process.communicate(timeout=60)  # 等待进程结束并获取输出
+        if stderr:
+            print(f"Error: {stderr}")  # 打印错误信息
+        return stdout.rstrip()  # 返回输出结果
+    except subprocess.TimeoutExpired:
+        print(f"Timeout: Process exceeded {timeout} seconds.")
+        process.kill()  # 终止进程
+        return None
+    except Exception as e:
+        print(f"Exception: {e}")
+        return None
+
+def run3_backup(jar_file_path, input_file_path, output_file_path, max_workers=4):
+    # 获取输入数据
+    input_group = getData(input_file_path)
+
+    outputs = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        # 提交任务
+        futures = [executor.submit(run_jar, jar_file_path, input_data) for input_data in input_group]
+
+        # 获取结果并写入文件
+        with open(output_file_path, "w", encoding="utf-8") as outfile:
+            for future in as_completed(futures):
+                output = future.result()
+                if output:
+                    outputs.append(output)
+                    outfile.write(output + "\n")  # 将输出写入文件
+
+    return outputs
+
 def batchRun(jar_folder_path, jar_name_list, log_folder_path):
     '''
     遍历jar_file_path下的所有jar包,均对其运行run3,比较输出结果
@@ -138,7 +185,7 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
                 f.write("")  # 写入空内容
         print(f"第{i+1}个测试对象:" + jar_file_path)
         with ThreadPoolExecutor() as executor:
-            future = executor.submit(run3, jar_file_path, input_file_path, output_file_path)
+            future = executor.submit(run3_backup, jar_file_path, input_file_path, output_file_path)
             try:
                 res.append(future.result(timeout=60))
             except TimeoutError:
@@ -183,7 +230,7 @@ if __name__ == '__main__':
     parser.add_argument('--auto', type=bool, default=True)
     parser.add_argument('--count', type=int, default=1)
     args = parser.parse_args()
-    count = args.count
+    count = min(args.count, 10)
     auto_generate = args.auto
     config = configparser.ConfigParser()
     config.read("/var/www/beatmatch/src/config.ini", encoding='utf-8')
