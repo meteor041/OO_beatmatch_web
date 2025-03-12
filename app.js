@@ -3,11 +3,11 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const {exec} = require("child_process");
-
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
-
+app.use(cors());
 
 // 设置上传文件存储路径和文件名
 const storage = multer.diskStorage({
@@ -22,7 +22,35 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 静态文件服务
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.json());
+
+// API：获取文件夹内容
+app.get('/log', (req, res) => {
+  const folderPath = req.query.path || path.join(__dirname, "beat_log");
+  const absolutePath = path.resolve(folderPath);
+
+  // 检查路径是否存在
+  if (!fs.existsSync(absolutePath)) {
+      return res.status(404).json({ error: 'Folder not found' });
+  }
+
+  // 读取文件夹内容
+  fs.readdir(absolutePath, { withFileTypes: true }, (err, files) => {
+      if (err) {
+          return res.status(500).json({ error: 'Unable to read folder' });
+      }
+
+      // 返回文件夹和文件信息
+      const result = files.map(file => ({
+          name: file.name,
+          type: file.isDirectory() ? 'folder' : 'file',
+          path: path.join(absolutePath, file.name),
+      }));
+      res.json(result);
+  });
+});
 
 // 文件上传路由
 app.post("/upload", upload.single("file"), (req, res) => {
@@ -30,6 +58,25 @@ app.post("/upload", upload.single("file"), (req, res) => {
     return res.status(400).send("No file uploaded.");
   }
   res.send(`File uploaded: ${req.file.filename}`);
+});
+
+// API：下载log文件
+app.get('/download-log', (req, res) => {
+    const filePath = req.query.path;
+    const absolutePath = path.resolve(filePath);
+
+    // 检查文件是否存在
+    if (!fs.existsSync(absolutePath)) {
+        return res.status(404).send('File not found');
+    }
+
+    // 设置响应头，触发浏览器下载
+    res.download(absolutePath, (err) => {
+        if (err) {
+            console.error('Download failed:', err);
+            res.status(500).send('Unable to download file');
+        }
+    });
 });
 
 // 文件下载路由
@@ -77,18 +124,21 @@ app.get("/files", (req, res) => {
 app.use(express.json());
 
 // 执行 Python 文件路由
-app.post("/run-python", (req, res) => {
+app.post("/run", (req, res) => {
   const dataCount = req.body.count; // 获取前端传递的 count 参数
 
-  // 验证参数是否为有效数字
-  if (isNaN(dataCount) || dataCount < 1) {
-    return res.status(400).send("Invalid data count parameter.");
-  }
+//   验证参数是否为有效数字
+//  if (isNaN(dataCount) || dataCount < 1) {
+// 	dataCount=1;
+//  return res.status(400).send("Invalid data count parameter.");
+//   }
 
   // 执行 Python 文件
-  exec(`python src/jar_beat3.py --count=${dataCount}`, { encoding: "utf8", env: { ...process.env, PYTHONIOENCODING: "utf8" } }, (error, stdout, stderr) => {
+const pythonScriptPath = '/var/www/beatmatch/src/jar_beat3.py';  
+exec(`python3 /var/www/beatmatch/src/jar_beat3.py --count=${dataCount}`, (error, stdout, stderr) => {
+  console.log("python module connected");
     if (error) {
-      console.error(`Error executing Python script: ${error.message}`);
+      console.error(`!!!Error executing Python script: ${error.message}`);
       return res.status(500).send("Error executing Python script.");
     }
     if (stderr) {

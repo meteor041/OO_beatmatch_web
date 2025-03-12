@@ -28,8 +28,65 @@
 <input type="number" id="data-count" min="1" value="1"> <!-- 默认值为10 -->
   <button id="run-python">Run Python Script</button>
   <pre id="python-output"></pre>
+	
+<h1>Log Viewer</h1>
+<!-- 导航栏：显示当前路径和返回上一级按钮 -->
+  <div id="navigation">
+	<button id="go-back">返回上一级</button>
+    <div id="current-path"></div>
+</div>
+    <ul id="log-list"></ul>
 
   <script>
+let currentPath = ''; // 当前路径
+
+// 获取文件夹内容
+        async function loadFolder(path = '') {
+currentPath = path; // 更新当前路径
+            const response = await fetch(`/api/log?path=${encodeURIComponent(path)}`);
+            const data = await response.json();
+		console.log('Loaded folder:', path);
+console.log('Data received:', data);
+            // 更新当前路径
+            document.getElementById('current-path').innerText = `Current Path: ${path || '/'}`;
+
+            // 清空列表
+            const fileList = document.getElementById('log-list');
+            fileList.innerHTML = '';
+
+            // 渲染文件夹和文件
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.className = item.type;
+                li.innerText = item.name;
+                li.onclick = () => {
+                    if (item.type === 'folder') {
+                        loadFolder(item.path); // 递归加载子文件夹
+                    } else {
+                         downloadFile(item.path);
+                    }
+                };
+                fileList.appendChild(li);
+            });
+        }
+	// 下载文件
+        function downloadFile(filePath) {
+            window.location.href = `/api/download-log?path=${encodeURIComponent(filePath)}`;
+        }
+	// 返回上一级目录
+    function goBack() {
+      if (currentPath) {
+        const parentPath = currentPath.split('/').slice(0, -1).join('/');
+        loadFolder(parentPath); // 加载上一级目录
+      } else {
+        alert('已经是根目录');
+      }
+    }
+// 绑定返回上一级按钮点击事件
+    document.getElementById('go-back').addEventListener('click', goBack);
+        // 初始化加载根目录
+        loadFolder();
+
      document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -38,7 +95,7 @@
             const formData = new FormData();
             formData.append('file', file);
 
-            fetch('/upload', {
+            fetch('api/upload', {
                 method: 'POST',
                 body: formData
             })
@@ -56,7 +113,7 @@
 
     // 获取文件列表并显示
      function fetchFiles() {
-       fetch("/files")
+       fetch("/api/files")
          .then((response) => response.json())
          .then((files) => {
            const fileList = document.getElementById("file-list");
@@ -64,7 +121,7 @@
            files.forEach((file) => {
              const li = document.createElement("li");
              const a = document.createElement("a");
-             a.href = `/download/${file}`;
+             a.href = `api/download/${file}`;
              a.textContent = file;
              li.appendChild(a);
              // 添加删除按钮
@@ -80,7 +137,7 @@
 
     // 删除文件
     function deleteFile(filename) {
-      fetch(`/delete/${filename}`, {
+      fetch(`api/delete/${filename}`, {
         method: 'DELETE'
       })
       .then(response => response.text())
@@ -97,11 +154,11 @@
     // 运行 Python 脚本
     document.getElementById("run-python").addEventListener("click", () => {
       const dataCount = document.getElementById("data-count").value; // 获取输入框的值
-      fetch("/run-python", {
+      fetch(`/api/run`, {
         method: "POST", // 使用 POST 请求
         headers: {
-          "Content-Type": "application/json",
-        },
+       "Content-Type": "application/json",
+       },
         body: JSON.stringify({ count: dataCount }), // 将参数发送到后端
       })
         .then((response) => response.text())

@@ -147,8 +147,7 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
 
     print(f"---测试最终结果：{res}---".format(res=res))
 
-    # 生成一个随机值代入x
-    random_value = random.uniform(-10, 10)
+   
 
     encounter_error_sentences = False
 
@@ -156,6 +155,8 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
     # 遍历每一行
     for col_idx in range(num_columns):
         evaluated_values = []
+ # 生成一个随机值代入x
+        random_value = random.uniform(-10, 10)
         for row in res:
             expr = row[col_idx] if col_idx < len(row) else None
             try:
@@ -173,19 +174,19 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
             print(f"Row {col_idx+1}: Expressions are NOT  equal when x = {random_value}")
         print(["%.2f" % num for num in evaluated_values])
 
-def read_from_jar_file(jar_folder_path : str) -> list(str):
+def read_from_jar_file(jar_folder_path : str) -> list[str]:
     # 获取所有以 .jar 结尾的文件
     return [f.strip(".jar") for f in os.listdir(jar_folder_path) if f.endswith(".jar")]
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--auto', type=bool, default=True)
-    parser.add_argument('--count', type=int, default=5)
+    parser.add_argument('--count', type=int, default=1)
     args = parser.parse_args()
     count = args.count
     auto_generate = args.auto
     config = configparser.ConfigParser()
-    config.read("C:\\Users\\Liu Xinyu\\PycharmProjects\\OO_hw1_judge\\src\\config.ini", encoding='utf-8')
+    config.read("/var/www/beatmatch/src/config.ini", encoding='utf-8')
     # 用户自定义输入所在文件
     input_file_path = config['BEAT']['input_file_path']
     # 测试用jar包所在文件
