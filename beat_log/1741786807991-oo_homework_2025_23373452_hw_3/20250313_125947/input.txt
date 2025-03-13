@@ -1,0 +1,8 @@
+2
+g(y)=  2134 * sin(( x	))	 + cos	( sin	(x		))		
+h(y,x)= +	 -sin (cos(	(	 cos(	+3)	))) 
+1
+f{0}(	y,	 x)	=	 	 +088
+f{n} 	(y,	 x)=0	*	f{n-1}(-847, 	cos		( 	x) )	-3194	*f{n-2}	(y	 ^ 4,x)+y 
+f{1}(  y,	 x)=x
+  x

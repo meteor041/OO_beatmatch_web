@@ -1,0 +1,8 @@
+2
+g(y)=	sin(	+4 ) 	-	 sin(	+57	 )	 -	x	
+h(x)=	cos  (sin	(x ))  
+1
+f{1}	 (	 y	 )= 	cos  (sin	 ( 	y  ^+4 )		)*y^		+4 
+f{n} ( 	y		)	 =4  * f{n-1}	(cos	(	cos(	y	))	)++2*f{n-2}(+2062)+	 y 	
+f{0}(  y	)=		+y* cos (	y)  -	cos  ( sin	 (-84	 )) 	
+	 	cos ( 	dx( 	(-02++		sin( f{2} 	(	 (		f{5} ( 	dx(  (+9)  ^ +6)	 ) 	*	 h	( 	sin ( sin	 (	 x	 ) 	)	)))	)	 - + 	dx  ((+x)	 )  )	 ))

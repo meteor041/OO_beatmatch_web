@@ -1,0 +1,1 @@
+cos(x)-x-sin(sin(cos(1)))

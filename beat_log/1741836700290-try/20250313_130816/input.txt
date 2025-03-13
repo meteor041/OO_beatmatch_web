@@ -1,0 +1,33 @@
+2
+g(y,x)=	 -cos	(sin  ( 	x		)		)-	y^+1	 
+h(y)=sin ( 	y	)	
+1
+f{1}(	y	 ,		x	 )	 =-	sin 	(y ) 	
+f{n}(	y	 ,		x )=+85 *f{n-1}	(+6, 	x  )  +86*f{n-2}(-7, x		^ 	8)++  x	 
+f{0} (  y	 ,		x 	) 	=	- -754		*  cos (	sin  (x  ))
+	+	sin(	83		)
+1
+g(x,y)=	-	sin ( cos(	 -1681  ))
+0
+		dx  ( 	( 	( sin		(	 cos(		dx(  (dx((x^0))-	cos		(cos  (	(x)		) ))^		+8)) 	) 	- x )  ^2)	^  +7)	
+2
+g(y,x)=	 	y * 	x 
+h(x)= 	-		(+906  - 	cos 	(	x	) )	^	+1-  9 
+1
+f{n}	 (	y	 , x	)	=5 *  f{n-1}(-61,  -6361)  +-566 	*f{n-2} 	(x,x)+y *x		
+f{0}( y	 , x )=	  	-	 cos(	sin(		sin 	(x )	))
+f{1}(y	 , x )	=		  -  y 	
+  (	x	^	+0 	)  
+2
+g(y)=-  +3		-sin( 	y  )	
+h(x,y)= sin(  cos(	-2230) )
+0
+	-9139  + g( +6092 )	 +-32
+2
+g(y)= sin( sin( sin  (cos( +6061 	)) 	)	)
+h(y)=sin  (	 cos (( y )		) )
+1
+f{1}(	x  )=	-  x
+f{0}(	x	 )= +		+11	 
+f{n}(x	)		=+9*  f{n-1} (-72	 )+-880*f{n-2} (x )+ 	x	
+	-9562- 	x

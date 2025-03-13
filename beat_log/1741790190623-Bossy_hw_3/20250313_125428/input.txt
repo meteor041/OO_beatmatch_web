@@ -1,0 +1,8 @@
+2
+g(y,x)=	sin(	cos	(sin  ( 	sin (	x)		)	 )		) 
+h(y,x)=sin		(  cos	(-539)	)	 
+1
+f{0}(  y	)	 =    -		sin	 (	cos(	-250		)) 
+f{1} ( y		)=	   -cos	(		(873 ))
+f{n} (y 	) =1325	 * f{n-1}(y) ++8030	*f{n-2} 	(y)+ sin 	(	y	) 
+ -+	 dx( (	 -8148	* -8	)	)

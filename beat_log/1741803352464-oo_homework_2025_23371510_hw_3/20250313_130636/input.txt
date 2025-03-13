@@ -1,0 +1,8 @@
+2
+g(x)=-cos(x		)	*	3	
+h(y)=cos	(	 +03)*	y 
+1
+f{n}(y	,	 x)=-79	*f{n-1} (x	^  +2,	y  )++8		*f{n-2}	((x ),x		)+	+-		-388		
+f{1}(y	,	 x	)	=  1  
+f{0}  (  y	,	 x	)=  sin		(		sin	 (cos( cos 	(	cos		(	y) )  )	))
+ 	-	1	

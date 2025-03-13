@@ -1,0 +1,10 @@
+-4*sin(cos(2296))
+cos(-3)
+5
+-1345705314+19904500*sin(-9148)-43450654*cos(cos(-2))
+0
+-9261-x^6*cos(77)
+1
+x
+-sin(720)
+sin((-607*cos(cos(x))*cos(cos(sin(cos(x))))*cos(x)*cos(sin(cos(x)))*sin(x)^2*sin(sin(cos(x)))+607*sin(x)))+sin(cos(sin(cos(x))))

@@ -1,0 +1,3 @@
+sin((-sin(x)*cos(x)))*cos(x)*cos((-sin(x)*cos(x)))*x*12-cos(-9)*45612+cos(4)*672-cos(cos(279936)^7)^7*2234988+cos((-sin(x)*cos(x)))*12+48532844871336-sin(x)*sin((-sin(x)*cos(x)))*cos(x)*cos((-sin(x)*cos(x)))*x*12
+cos((sin(sin(-44))^4*319794774016))*3286+x^2*36+cos((x^2*12))*162+cos(cos((x^2*12)))*9-sin((x^2*12))*cos((x^2*12))*x^2*3888-1774+sin(cos((x^2*12)))*sin((x^2*12))*cos(cos((x^2*12)))*cos((x^2*12))*x^2*216
+-1403

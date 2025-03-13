@@ -1,0 +1,35 @@
+2
+g(y)=	 +75
+h(y,x)=cos(  x )*	sin( x) 	+	sin 	(	 +560  )		
+1
+f{0}(y)	= 	+cos	(		cos	 (	sin		(  sin	(6) 	)  ) )
+f{n}(y	 )		=-482*	f{n-1}(y  ) +01*f{n-2}	(y^ +3	)++1689 -		-81 	
+f{1}(y) =	++07		+sin	 (		y	)	
+h(sin (08		),3) 
+1
+h(y)=cos(y 	)  ++sin (y)
+0
+ 	 	347 
+2
+g(y,x)=	-5717	 +  cos (x 	)	
+h(x,y)=	+	 +11 
+1
+f{n}(	x)=+0664*		f{n-1}	(sin(x ))		+-94	*f{n-2}(6818 )+cos(x)+	sin	(	-23)	
+f{1}(x) 	=		 (	-sin	 (	995)-x)^		2	+		cos (4498	 )
+f{0}(	x)=( 	715)		
++4251  -cos	 (  f{5}		(x)	) 	*  90
+2
+g(y)=	-555 
+h(x)=-626-		x^+6	 
+1
+f{0} (x )= x *sin(sin( x )		)+		sin  (x		^ 2	)	
+f{1}(x	)  =		x 
+f{n}	 (	x	)=+1 	*f{n-1}		(3) ++317*f{n-2}(cos(	 x		^+0	))+  x	-	x+x	 ^ +1
+ +	-57	*f{1} (  sin(g (  sin(g(	 dx (	(dx(	(x)^5 	)	*		dx 	((x)  ^ +8	 ) 	-sin  (  (-4)) 	)	 )	) )) 	)	)	
+1
+h(y,x)=sin 	(cos (sin	(	cos( 827) )		)		)	
+1
+f{n}(x	 ,  y	 ) =+3	*	f{n-1}		(sin	(y 	),	cos (y	 ))	+56*f{n-2}(y,y)+ 	  x
+f{1} 	(x	 ,  y ) 	=   	y 
+f{0} (		x	 ,  y)	=	 	+	cos		( cos		(	29 	)	 )* cos	 ( sin(	1113)	)
+	+8	 

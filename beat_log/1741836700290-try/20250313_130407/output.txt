@@ -1,0 +1,5 @@
+cos(-1)
+sin(5132)+cos(sin(cos(3592)))
+6853
+sin(cos(x^3))
+-5

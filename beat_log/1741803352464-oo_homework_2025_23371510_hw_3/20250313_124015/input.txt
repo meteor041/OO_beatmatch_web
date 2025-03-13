@@ -1,0 +1,8 @@
+2
+g(x,y)=sin 	( (cos (cos( 	35	) 	)		))-	 -4
+h(x)=	x-x
+1
+f{0}  (	 y		,		x)	 =		 -  cos	(	 cos(	y)  )		-sin( +7923) 
+f{1}  (	y		,		x)	=	 sin (  39		)	*(	 cos(		(		( - 	x	*x)	 ^	8 + y)	)	)	
+f{n}	 (	y		,		x		) =9888 * f{n-1} (x,y)		--92 	*f{n-2}(sin(y),x )+cos(	y) 
+ 	dx( (		+		dx ( ( 	-	dx	((		dx( (x^ 5) 	^2 ) ))		)	)	)  )*	dx((dx(	 (		g (	h	(sin	((+96)	)		),	 (	 dx	 (		(+8)^ 	+2	)) ^		+8	)* h(dx 	((-	dx	((x)	 )	*x) )))))	 )

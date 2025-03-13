@@ -1,0 +1,8 @@
+2
+g(y)=+  3*	sin ( 	sin(		sin	 (x	) 	))	-	x  
+h(x,y)=	cos(cos	 (	x))	 
+1
+f{n}(	y	 ,	 x)		=0*f{n-1}(y,sin(+608  ))-135 *f{n-2} (sin 	(	y ), 	+15	)+	x
+f{0} 	(y	 ,	 x	)	=		sin	((	cos ( x ) )^	 +3) 
+f{1}(	y	 ,	 x	 )	= 	cos	((		x) 	)
+	( - dx	 ( ( x ^  +4		-dx		(( (-		dx(		(x 	^4) 	)*x  ) ^	7  )	^+2 	) )		)+ 	dx(	(- f{5}( g		(	x  ^	4), 	cos (  (	dx	 (		(4779) ^	6  ) 	)	) ) )	 )) 	

@@ -1,0 +1,4 @@
+0
+0
+-5
+741*cos(cos(x))*cos(cos(cos(cos(x))))*sin(cos(x))*sin(cos(cos(x)))^2*sin(x)^3+741*cos(cos(cos(x)))*cos(x)*sin(cos(x))^2*sin(cos(cos(cos(x))))*sin(x)-247*sin(cos(x))^3*sin(cos(cos(cos(x))))*sin(cos(cos(x)))*sin(x)^3-247*sin(cos(x))*sin(cos(cos(cos(x))))*sin(cos(cos(x)))*sin(x)-247*sin(cos(x))*sin(cos(cos(cos(x))))*sin(cos(cos(x)))*sin(x)^3-247*sin(cos(x))^3*sin(cos(cos(cos(x))))*sin(cos(cos(x)))^3*sin(x)^3-741*cos(cos(cos(cos(x))))*cos(x)*sin(cos(x))^2*sin(cos(cos(x)))^2*sin(x)-741*cos(cos(cos(cos(x))))*cos(cos(cos(x)))*sin(cos(x))^3*sin(cos(cos(x)))*sin(x)^3-741*cos(cos(x))*cos(cos(cos(x)))*sin(cos(x))*sin(cos(cos(cos(x))))*sin(x)^3-741*cos(cos(x))*cos(x)*sin(cos(cos(cos(x))))*sin(cos(cos(x)))*sin(x)

@@ -132,9 +132,9 @@ class Generator:
         def generate_factor(depth):
             """生成因子"""
             rand = random.random()
-            if rand < 0.2 and self.derive_enable:
+            if rand < 0.4 and self.derive_enable:
                 return generate_derivative_factor(depth)
-            elif rand < 0.5:
+            elif rand < 0.7:
                 return generate_variable_factor(depth)
             elif rand < 0.8:
                 return generate_constant_factor()
@@ -169,7 +169,7 @@ class Generator:
 
             expression += generate_term(depth) + generate_whitespace()
 
-            prob = 0.4
+            prob = 0.8
             while random.random() < prob:
                 expression += random.choice(["+", "-"]) + generate_whitespace() + generate_term(
                     depth) + generate_whitespace()
@@ -177,7 +177,7 @@ class Generator:
             return expression
 
         def generate_function_call_n_1(f_type):
-            if f_type == 3:
+            if f_type == 3 or f_type == 4:
                 return 'f{n-1}' + generate_whitespace() + '(' + generate_factor(self.max_depth - 1) + ',' + \
                     generate_whitespace() + generate_factor(self.max_depth - 1) + generate_whitespace() + ')'
             else:
@@ -185,7 +185,7 @@ class Generator:
                     + generate_whitespace() + ')'
 
         def generate_function_call_n_2(f_type):
-            if f_type == 3:
+            if f_type == 3 or f_type == 4:
                 return 'f{n-2}' + generate_whitespace() + '(' + generate_factor(self.max_depth - 1) + ',' + \
                     generate_whitespace() + generate_factor(self.max_depth - 1) + generate_whitespace() + ')'
             else:
@@ -240,6 +240,10 @@ class Generator:
             var = 'x' if mode == 1 else 'y' if mode == 2 else 'x,y' if mode == 3 else 'y,x'
             if mode == 3 or mode == 4:
                 self.arguments = ['x', 'y']
+                s = type + '(' + var + ')' + '=' + generate_expression_recursive(self.max_depth)
+                self.arguments = ['x']
+            elif mode == 2:
+                self.arguments = ['y']
                 s = type + '(' + var + ')' + '=' + generate_expression_recursive(self.max_depth)
                 self.arguments = ['x']
             else:

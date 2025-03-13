@@ -1,0 +1,20 @@
+1
+h(x,y)=  cos(sin ( x	)  )	* y	 
+1
+f{n}(	x	) =9815	*	f{n-1}(x^ 7)  +-9	 *f{n-2}(sin	 (x 	) 	)+		cos(x	 ) *+53 
+f{0}  (x	 )	=  -	x  -	sin ( ( 	+0		)	 ^2	)
+f{1}(x	)  = 	sin		( 	( 840)	) 	
+		dx((			cos(x	 )  )	)
+1
+g(y,x)=cos (-33  )+  x  
+1
+f{n}	( 	x	, y	)=-3*  f{n-1}(sin( x	),	y  ) +6051 *f{n-2}	(x,  y	)+	y - x 	
+f{0}	(	 x	, y	)=		 cos	 (sin	 (	 2369)	 )  
+f{1}	( 	x	, y)		=			sin 	(cos (cos	(	cos( 	cos  (	y	) 	) ) )  )
+  699 
+0
+1
+f{1}( 	x	 ,y 	)= 	sin(( + x	)		)	
+f{n} ( x	 ,y  ) 	=+9 	*f{n-1}(sin	( 	x),x	)+-3615	*f{n-2}(y,x	)+	 +  x	
+f{0}		(x	 ,y		)=  	cos (  sin(	cos 	(x ))	)+y
+	-344 

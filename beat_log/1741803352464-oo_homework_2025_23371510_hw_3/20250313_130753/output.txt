@@ -1,0 +1,5 @@
+860
+-297
+x
+7*cos(cos(cos((-x))))*sin(cos((-x)))*sin((-x))*sin(cos(cos((-x))))^6
+7

@@ -1,0 +1,4 @@
+1
+g(x)=	 cos  (	+0864 )  
+0
+		cos		(  x)	 -(	x +	+  sin(	sin 	(cos (	 (  dx 	(  (x	)	)	 ) )) 	))

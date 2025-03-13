@@ -1,0 +1,10 @@
+cos(-6653)*25110065+sin(37)*65383528+cos(sin(sin(sin(-9))))*280616+sin(-9823)*613+1156735106
+-23424
+6
+44
+cos(x)*cos((sin(x)*129))*119583-sin(x)*sin(cos(sin(cos(x))))*sin(sin(cos(x)))*cos(cos(x))*cos(x)*cos(cos(sin(cos(x))))*cos(sin(cos(x)))*927
+5316
+95
+-1
+0
+sin(8990)*86-sin(-840)

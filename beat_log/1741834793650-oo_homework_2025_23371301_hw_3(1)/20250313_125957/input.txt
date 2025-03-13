@@ -1,0 +1,6 @@
+0
+1
+f{0}	(y	)=   cos  (		sin	 (	sin	 (cos( cos	 (y)	)	 )  )  )	
+f{1} (  y )  = 	y	 +	cos(	(	sin 	(81	 ) )		)  
+f{n}	 (		y)	=+9977*f{n-1}		(y  ) +00  *f{n-2}(sin (		cos( y  )	 ))+ -	 y
+   	x 

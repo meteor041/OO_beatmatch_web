@@ -1,0 +1,8 @@
+2
+g(x)= 	(	+sin ( 	cos (x)  ) )		-x	
+h(x,y)=	cos	((	y	 * cos( y)		)^5		)
+1
+f{n}  (x  ,y  )	=03 * f{n-1} (+8809,x	 ) +-7271*f{n-2}(x,x	^ 	7	)+-  55  
+f{1}(	x  ,y  )	=		 sin(	(+		+	 sin(		cos  (x	 ) ) *  x) 	)
+f{0}( x  ,y)=	x
+	g  (	 dx	( ( x)	) 	)  -dx((+  x ^+0-	dx	(	 ( 	x)	)))

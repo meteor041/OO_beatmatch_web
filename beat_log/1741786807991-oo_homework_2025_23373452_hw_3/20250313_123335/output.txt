@@ -1,0 +1,10 @@
+-14776336*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-14776336*x^5*sin(sin(cos(sin(299))))-x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))-14776336*x^5*sin(sin(cos(sin(299))))+62*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+62*x^5*sin(sin(cos(sin(299))))+916132832*x^5-3844*x^5*sin(sin(cos(sin(299))))-14776336*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))+62*x^5*sin(sin(cos(sin(299))))+62*x^5*sin(sin(cos(sin(299))))-3844*x^5*sin(sin(cos(sin(299))))+238328*x^5*sin(sin(cos(sin(299))))+62*x^5*sin(sin(cos(sin(299))))-14776336*x^5*sin(sin(cos(sin(299))))
+56*cos(x)
+-6010
+1517+sin((5742*sin(606)+14777920+35*sin(sin(x))))
+254
+cos(9452)-19
+0
+-407
+1989
+0

@@ -7,6 +7,7 @@ from sympy import *
 import subprocess
 import random
 import argparse
+from datetime import datetime
 
 x = symbols('x')
 eps = 1e-6
@@ -132,12 +133,12 @@ def run_jar(jar_file_path, input_data):
         process.stdin.flush()
 
         # 读取输出和错误
-        stdout, stderr = process.communicate(timeout=60)  # 等待进程结束并获取输出
+        stdout, stderr = process.communicate(timeout=30)  # 等待进程结束并获取输出
         if stderr:
             print(f"Error: {stderr}")  # 打印错误信息
         return stdout.rstrip()  # 返回输出结果
     except subprocess.TimeoutExpired:
-        print(f"Timeout: Process exceeded {timeout} seconds.")
+        print(f"Timeout: Process exceeded 30 seconds.")
         process.kill()  # 终止进程
         return None
     except Exception as e:
@@ -152,11 +153,12 @@ def run3_backup(jar_file_path, input_file_path, output_file_path, max_workers=4)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 提交任务
         futures = [executor.submit(run_jar, jar_file_path, input_data) for input_data in input_group]
-
+        # 使用 map 方法保证顺序
+        results = executor.map(lambda data: run_jar(jar_file_path, data), input_group)
         # 获取结果并写入文件
         with open(output_file_path, "w", encoding="utf-8") as outfile:
-            for future in as_completed(futures):
-                output = future.result()
+            for output in results:
+                # output = future.result()
                 if output:
                     outputs.append(output)
                     outfile.write(output + "\n")  # 将输出写入文件
@@ -173,12 +175,12 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
     res = list()
     for i, name in enumerate(jar_name_list):
         jar_file_path = os.path.join(jar_folder_path, name + '.jar')
-        input_file_path = os.path.join(log_folder_path, name, 'input.txt')
+        input_file_path = os.path.join(log_folder_path, name, current_time, 'input.txt')
         if not os.path.exists(input_file_path):
             # 创建文件
             with open(input_file_path, "w") as f:
                 f.write("")  # 写入空内容
-        output_file_path = os.path.join(log_folder_path, name, 'output.txt')
+        output_file_path = os.path.join(log_folder_path, name, current_time, 'output.txt')
         if not os.path.exists(output_file_path):
             # 创建文件
             with open(output_file_path, "w") as f:
@@ -211,11 +213,11 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
                 evaluated_value = sympify(expr).subs(x, random_value)
                 evaluated_values.append(evaluated_value)
             except (SympifyError, TypeError, AttributeError):
-                # 如果转换失败，替换为114，并设置标志变量为True
-                evaluated_values.append(114)
+                # 如果转换失败，替换为114514，并设置标志变量为True
+                evaluated_values.append("114514")
                 encounter_error_sentences = True
         # 检查同一行的所有元素在代入x后的值是否相等
-        if all(abs(val-evaluated_values[0]) < eps for val in evaluated_values) and not encounter_error_sentences:
+        if not encounter_error_sentences and all(abs(val-evaluated_values[0]) < eps for val in evaluated_values) :
             print(f"Row {col_idx+1}: All expressions are equal when x = {random_value}")
         else:
             print(f"Row {col_idx+1}: Expressions are NOT  equal when x = {random_value}")
@@ -250,8 +252,10 @@ if __name__ == '__main__':
         # 读取用户设置的输入
         with open(input_file_path, 'r') as f:
             lines = f.readlines()
+    current_time = datetime.now().strftime("%Y%m%d_%H%M%S")  # 格式示例: 20231025_143022
+    print("the program start at {}".format(current_time))
     for i in range(len(jar_name_list)):
-        file_path = os.path.join(log_folder_path, jar_name_list[i], "input.txt")
+        file_path = os.path.join(log_folder_path, jar_name_list[i], current_time, "input.txt")
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "w") as f:
             f.writelines(lines)

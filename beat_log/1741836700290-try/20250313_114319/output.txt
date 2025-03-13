@@ -1,0 +1,7 @@
+0
+-sin(x)*sin((-cos(x)))*cos(x)*cos((-cos(x)))
+cos((sin(-69)*cos(x^4)*x^3*4+cos(sin(cos(x)))*180+sin(x)*sin(sin(cos(x)))*cos(cos(x))*cos(x)*cos(sin(cos(x)))*x*180))
+-cos(-588)*4
+0
+-cos(-4)
+cos(sin(-22))-855

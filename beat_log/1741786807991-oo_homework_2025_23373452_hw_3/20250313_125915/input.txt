@@ -1,0 +1,39 @@
+2
+g(y)=+0043		
+h(y)= 		sin 	(		+30 )	 
+1
+f{0}	(  y) 	=	cos 	(sin(	sin ( cos	(y	 )		)	)		)	
+f{1} 	(y )		=		 	sin(  -0020)  *cos(+7) 	
+f{n}(	y )	=7112		*	f{n-1}		(-4) 	--32		*f{n-2}	 (sin(y 	))+y 
+	+ 	dx ((	 + -09-dx (	 ( - + dx	 (	( dx((1) )	*dx	 (	 (x	 ^ 	4) 	)	) 	^ 	5 ) 	)		))) 
+1
+h(y)=-cos  (		sin (	 sin 	(	 cos (1115)		)		)	) 	
+1
+f{0}(		x	 )  =(-	sin  (	 cos	 (  cos (	cos( 40 )	) ) 	)		)	*x 
+f{1}  (x)=		-  cos 	( cos		(cos( x )	)	 ) 
+f{n}	 (	x)	=-4* f{n-1}  (x	)	 -79	*f{n-2} (sin ( cos (0350)))+-sin(05)
+ -dx 	( ( (dx (  ( 	dx	((x	+	(x)	 - dx(		(17) 	^+3	 ))		) ) )	 )	) 	)	
+2
+g(y,x)=		-(y ^ 7 ) * y 	
+h(x)= - sin( 	(  x ^+2) )		*( cos (	 x)) 
+1
+f{0}	 (  x	) = 		+4		+sin (x	) 	
+f{1}(	x  )	=sin	 ( sin(	sin	 (cos	(  cos(cos( cos  (  x 	) 	)  )  ) 	) 	))
+f{n}	(  x 	)=-1*f{n-1}		(x ) 	+-419	*f{n-2}(x^6	)+ 	sin( x	) *-679
+	-g(	dx (	(  h  (	 ( dx  (	( 	(-0988)  - (x)	 )  ^ 5 ) )	))),dx(	 ( 	-		+562	)  ) ) 	
+2
+g(x)= 7229	 *  cos	 (	 304 )	
+h(y,x)= 	-	y+	 cos	(x  )
+1
+f{n}	 ( 	y	 ,x) =+5	*f{n-1}(+611,y)-727*f{n-2} 	((-31	), (x))+		cos ( x)
+f{1}	(  y	 ,x  )		= cos (sin (  x	^	+1 ))*  (-58 	)
+f{0} (	y	 ,x	) =	 	cos	(	(	 (y	*	-61 	)  *		cos (x) 	)^  +4 	)
+	-5  
+2
+g(y,x)=+ 	y	 
+h(y,x)=		cos	(cos(cos	(	cos (x) ) )) 	
+1
+f{n}	 (x)	=+73*f{n-1} 	(04 )	+84 *f{n-2} (+648)+cos  (		0617  )
+f{1} 	(x	 ) =	 sin(x	 )	*	sin( sin ( cos(		sin (		cos(x		)  )	))) 
+f{0}	 (x	)	=	( -	cos  (	cos(57		)	 ) ) 
+	 dx		( (	 +72)) + dx	( (+	dx(( dx	(  ( 	h( (+370),		x	)	+dx (  (x))))	* 	247 	-dx(	( 	dx((-863)	^+4))	)	* dx((+dx(		(x) )	) ))	^ 	1 	) 	) )
