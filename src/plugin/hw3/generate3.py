@@ -10,7 +10,7 @@ class Generator:
         self.max_length = max_length
         self.function_type = [random.randint(0, 4) for _ in range(3)]
         self.arguments = ['x']
-        self.forbid_function = False
+        self.forbid_function = [False] * 3
         self.derive_enable = True
 
     def generate_expression(self) -> str:
@@ -114,11 +114,11 @@ class Generator:
         def generate_variable_factor(depth):
             """生成变量因子"""
             rand = random.random()
-            if rand < 0.2 and not self.forbid_function and self.function_type[2] != 0:
+            if rand < 0.2 and not self.forbid_function[2] and self.function_type[2] != 0:
                 return generate_function_call_f(depth)
-            elif rand < 0.4 and not self.forbid_function and self.function_type[0] != 0:
+            elif rand < 0.4 and not self.forbid_function[0] and self.function_type[0] != 0:
                 return generate_function_call_g(depth)
-            elif rand < 0.6 and not self.forbid_function and self.function_type[1] != 0:
+            elif rand < 0.6 and not self.forbid_function[1] and self.function_type[1] != 0:
                 return generate_function_call_h(depth)
             elif rand < 0.8:
                 return generate_trigonometric_functions(depth)
@@ -198,7 +198,7 @@ class Generator:
             value = 'x' if self.function_type[2] == 1 else 'y' if self.function_type[2] == 2 else \
                 'x' + generate_whitespace() + ',' + generate_whitespace() + 'y' if self.function_type[2] == 3 \
                     else 'y' + generate_whitespace() + ',' + generate_whitespace() + 'x'
-            self.forbid_function = True
+            self.forbid_function[2] = True
             initial_definition0 = 'f{0}' + generate_whitespace() + '(' + generate_whitespace() + value + \
                                   generate_whitespace() + ')' + generate_whitespace() + '=' + generate_whitespace() + \
                                   generate_expression_recursive(self.max_depth)
@@ -231,7 +231,7 @@ class Generator:
                     self.function_type[2]) + \
                                      '+' + generate_expression_recursive(self.max_depth)
             self.arguments = ['x']
-            self.forbid_function = False
+            self.forbid_function[2] = False
             definition_list = [initial_definition0, initial_definition1, initial_definition]
             random.shuffle(definition_list)
             return definition_list[0] + '\n' + definition_list[1] + '\n' + definition_list[2]
@@ -250,33 +250,35 @@ class Generator:
                 s = type + '(' + var + ')' + '=' + generate_expression_recursive(self.max_depth)
             return s
 
-        input = generate_expression_recursive(self.max_depth)
-        while len(input) > self.max_length:
-            input = generate_expression_recursive(self.max_depth)
         self.derive_enable = False
-        self.forbid_function = True
+        self.forbid_function = [True] * 3
         def0 = str(min(self.function_type[0], 1) + min(self.function_type[1], 1)) + '\n'
         if self.function_type[0] != 0:
             def1 = generate_self_definition("g", self.function_type[0]) + '\n'
             while len(def1) > 50:
                 def1 = generate_self_definition("g", self.function_type[0]) + '\n'
+            self.forbid_function[0] = False
         else:
             def1 = ''
         if self.function_type[1] != 0:
             def2 = generate_self_definition("h", self.function_type[1]) + '\n'
             while len(def2) > 50:
                 def2 = generate_self_definition("h", self.function_type[1]) + '\n'
+            self.forbid_function[1] = False
         else:
             def2 = ''
         if self.function_type[2] == 0:
             recur = '0\n'
         else:
             recur = '1\n' + generate_function_definition(self) + '\n'
-        self.forbid_function = False
+            self.forbid_function[2] = False
+        input = generate_expression_recursive(self.max_depth)
+        while len(input) > self.max_length:
+            input = generate_expression_recursive(self.max_depth)
         return def0 + def1 + def2 + recur + input
 
 
 if __name__ == '__main__':
-    res = Generator(8, 200).generate_expression()
+    res = Generator(3, 200).generate_expression()
     print(res)
     # print(len(res))

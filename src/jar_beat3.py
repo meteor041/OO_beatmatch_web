@@ -214,7 +214,7 @@ def batchRun(jar_folder_path, jar_name_list, log_folder_path):
                 evaluated_values.append(evaluated_value)
             except (SympifyError, TypeError, AttributeError):
                 # 如果转换失败，替换为114514，并设置标志变量为True
-                evaluated_values.append("114514")
+                evaluated_values.append(114514)
                 encounter_error_sentences = True
         # 检查同一行的所有元素在代入x后的值是否相等
         if not encounter_error_sentences and all(abs(val-evaluated_values[0]) < eps for val in evaluated_values) :

@@ -38,17 +38,17 @@
     <ul id="log-list"></ul>
 
   <script>
-let currentPath = ''; // 当前路径
+let currentPath = '/var/www/beatmatch/beat_log'; // 当前路径
 
-// 获取文件夹内容
+	// 获取文件夹内容
         async function loadFolder(path = '') {
-currentPath = path; // 更新当前路径
+	    currentPath = path; // 更新当前路径
             const response = await fetch(`/api/log?path=${encodeURIComponent(path)}`);
             const data = await response.json();
 		console.log('Loaded folder:', path);
-console.log('Data received:', data);
+		console.log('Data received:', data);
             // 更新当前路径
-            document.getElementById('current-path').innerText = `Current Path: ${path || '/'}`;
+            document.getElementById('current-path').innerText = `Current Path: ${path || '/var/www/beatmatch/beat_log'}`;
 
             // 清空列表
             const fileList = document.getElementById('log-list');
@@ -58,7 +58,19 @@ console.log('Data received:', data);
             data.forEach(item => {
                 const li = document.createElement('li');
                 li.className = item.type;
-                li.innerText = item.name;
+                //li.innerText = item.name;
+		if (item.type === 'file') {
+            // 文件：使用 <a> 标签并添加下划线
+            const a = document.createElement('a');
+            a.href = '#'; // 防止点击时跳转
+            a.textContent = item.name;
+            a.style.textDecoration = 'underline'; // 添加下划线
+            a.style.color = 'blue'; // 可选：设置文件名为蓝色
+            li.appendChild(a);
+        } else {
+            // 文件夹：直接显示名称，不加下划线
+            li.textContent = item.name;
+        }
                 li.onclick = () => {
                     if (item.type === 'folder') {
                         loadFolder(item.path); // 递归加载子文件夹
@@ -75,7 +87,8 @@ console.log('Data received:', data);
         }
 	// 返回上一级目录
     function goBack() {
-      if (currentPath) {
+	rootPath = '/var/www/beatmatch/beat_log';
+      if (currentPath && currentPath !== rootPath) {
         const parentPath = currentPath.split('/').slice(0, -1).join('/');
         loadFolder(parentPath); // 加载上一级目录
       } else {
